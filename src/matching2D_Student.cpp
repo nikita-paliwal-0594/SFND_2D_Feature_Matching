@@ -51,6 +51,8 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
                 goodMatches.push_back(knnMatches[i][0]);
             }
         }
+
+        cout << "Matched keypoints between previous and current frames are n = " << goodMatches.size() << endl;
     }
 }
 
@@ -94,7 +96,7 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     double t = (double)cv::getTickCount();
     extractor->compute(img, keypoints, descriptors);
     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-    cout << descriptorType << " descriptor extraction with n =" << keypoints.size() << " keypoints in "<< 1000 * t / 1.0 << " ms" << endl;
+    cout << descriptorType << " descriptor extraction with n = " << keypoints.size() << " matched keypoints in "<< 1000 * t / 1.0 << " ms" << endl;
 }
 
 // Detect keypoints in image using the traditional Shi-Thomasi detector
